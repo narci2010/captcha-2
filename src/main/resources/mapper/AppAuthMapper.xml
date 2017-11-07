@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shearf.cloud.apps.captcha.pub.dal.mapper.AppAuthMapper">
+    <resultMap id="BaseResultMap" type="com.shearf.cloud.apps.captcha.pub.domain.model.AppAuth">
+        <id property="id" column="id" jdbcType="INTEGER" javaType="Integer" />
+        <result property="appId" column="app_id" jdbcType="INTEGER" javaType="Integer" />
+        <result property="appKey" column="app_key" jdbcType="CHAR" javaType="String" />
+        <result property="appSecret" column="app_secret" jdbcType="CHAR" javaType="String" />
+        <result property="status" column="status" jdbcType="TINYINT" javaType="Integer" />
+        <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP" javaType="Date" />
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="Date" />
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP" javaType="Date" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        `id`, `app_id`, `app_key`, `app_secret`, `status`, `expire_time`, `create_time`, `update_time`
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT <include refid="Base_Column_List" /> FROM `captcha_app_auth`
+        WHERE `id` = #{id, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.shearf.cloud.apps.captcha.pub.domain.model.AppAuth">
+        INSERT INTO `captcha_app_auth` (`app_id`, `app_key`, `app_secret`, `status`, `expire_time`,
+                                        `create_time`, `update_time`) VALUES (
+                #{appId, jdbcType=INTEGER}, #{appKey, jdbcType=CHAR}, #{appSecret, jdbcType=CHAR},
+            #{status, jdbcType=INTEGER}, #{expireTime, jdbcType=TIMESTAMP}, #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <select id="getByAppKey" parameterType="String" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM `captcha_app_auth` WHERE `app_key` = #{appKey, jdbcType=CHAR}
+    </select>
+</mapper>
