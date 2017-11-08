@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "app.request.valid.seconds",
+      "type": "java.lang.Integer",
+      "description": "请求有效时间."
+    },
+    {
+      "name": "app.captcha.scan.range",
+      "type": "java.lang.String",
+      "description": "设定验证码随机取数ID范围."
+    }
+  ] }
