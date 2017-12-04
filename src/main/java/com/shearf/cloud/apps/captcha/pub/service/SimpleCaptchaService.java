@@ -5,7 +5,7 @@ import com.shearf.cloud.apps.commons.foundation.mybatis.IGenericService;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 public interface SimpleCaptchaService extends IGenericService<SimpleCaptcha, Integer> {
 

@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 @Configuration
 @ComponentScan("com.shearf.cloud.apps.captcha.pub.web")

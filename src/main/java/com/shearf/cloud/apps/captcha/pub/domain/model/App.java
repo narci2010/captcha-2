@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/7
+ * @date 2017/11/7
  */
 @Data
 public class App extends BaseModel {

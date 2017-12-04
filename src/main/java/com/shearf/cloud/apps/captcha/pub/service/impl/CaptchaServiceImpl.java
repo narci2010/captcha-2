@@ -9,7 +9,8 @@ import com.shearf.cloud.apps.captcha.pub.domain.model.SimpleCaptcha;
 import com.shearf.cloud.apps.captcha.pub.service.CaptchaService;
 import com.shearf.cloud.apps.captcha.pub.service.SimpleCaptchaService;
 import org.joda.time.DateTime;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CaptchaServiceImpl.class);
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
@@ -45,13 +48,13 @@ public class CaptchaServiceImpl implements CaptchaService {
         // 存在缓存则用缓存
         if (captchaStorage != null) {
             String[] captchaInfo = captchaStorage.split("_");
-            CaptchaAndImg captchaAndImg = new CaptchaAndImg();
             try {
+                CaptchaAndImg captchaAndImg = new CaptchaAndImg();
                 captchaAndImg.setImgUrl(captchaInfo[1]);
                 captchaAndImg.setCaptcha(captchaInfo[0]);
                 return captchaAndImg;
-            } catch (ArrayIndexOutOfBoundsException ignored) {
-
+            } catch (ArrayIndexOutOfBoundsException e) {
+                LOGGER.error("分割缓存的内容失败, 缓存key:{}, value:{}", key, captchaStorage);
             }
         } else {
             // 读取数据库数据
@@ -75,6 +78,8 @@ public class CaptchaServiceImpl implements CaptchaService {
 
                     return captchaAndImg;
                 }
+            } else {
+                LOGGER.error("获取数据库中的数据失败, 数据不存在, 查询条件:{}, offset:{}, limit:{}", param, id, 1);
             }
         }
         return null;

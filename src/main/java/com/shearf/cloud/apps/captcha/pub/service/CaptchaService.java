@@ -4,12 +4,14 @@ import com.shearf.cloud.apps.captcha.pub.domain.entity.CaptchaAndImg;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 public interface CaptchaService {
 
     /**
-     * @return 生成随机验证码和验证码图片
+     * 生成随机验证码和验证码图片
+     *
+     * @return 验证码和验证码图片
      */
     CaptchaAndImg getCaptcha();
 }

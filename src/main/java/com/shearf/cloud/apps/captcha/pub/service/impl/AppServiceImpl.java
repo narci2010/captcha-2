@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/7
+ * @date 2017/11/7
  */
 @Service
 public class AppServiceImpl extends AbstractGenericService<App, Integer, AppMapper> implements AppService {

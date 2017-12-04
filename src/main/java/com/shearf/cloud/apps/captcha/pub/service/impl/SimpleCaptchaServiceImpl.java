@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 @Service
 public class SimpleCaptchaServiceImpl extends AbstractGenericService<SimpleCaptcha, Integer, SimpleCaptchaMapper> implements SimpleCaptchaService {

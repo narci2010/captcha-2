@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 /**
  * @author xiahaihu2009@gmail.com
- * @Date 2017/11/8
+ * @date 2017/11/8
  */
 @RestController
 @RequestMapping("captcha")
@@ -24,6 +24,9 @@ public class CaptchaController {
     @GetMapping("/v1")
     public Response<CaptchaAndImg> getCaptcha() {
         CaptchaAndImg captchaAndImg = captchaService.getCaptcha();
+        if (captchaAndImg == null) {
+            return Response.fail();
+        }
         return Response.success(captchaAndImg);
     }
 }
